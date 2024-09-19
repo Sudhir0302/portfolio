@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
-import { Ban } from 'lucide-react';
+import {Ban, CircleArrowLeft, CircleArrowRight } from 'lucide-react';
 import { Interest } from '../components/Interest';
 import Skills from '../components/Skills';
 
 const Home = () => {
   const [show, setShow] = useState(true);
+  const [slide,setSlide] = useState(false)
 
   function handleClick() {
     setShow(!show);
+  }
+
+  function handleSlide(){
+    setSlide(!slide);
   }
   const [com,setCom]=useState(null);
   return (
@@ -23,9 +28,15 @@ const Home = () => {
               technical knowledge in developing scalable and efficient solutions.
             </h2>
           </div>
-          <div className="ml-44 w-[500px] h-auto bg-gray-700 rounded-3xl text-xl text-white p-10 mr-44 mt-0 flex flex-row gap-16">
-            <Interest />
-            <Skills />
+          <div>
+            <div className="ml-44 w-[380px] h-[40px] bg-gray-700 rounded-3xl text-white p-2 mr-44 mt-0 flex flex-row gap-80">
+              <CircleArrowLeft onClick={handleSlide} className="text-9xl"/>
+              <CircleArrowRight onClick={handleSlide} className="text-9xl"/>
+            </div>
+            <div className="ml-44 w-auto h-auto rounded-3xl bg-gray-700 text-white p-2 mr-44 mt-1 flex flex-row">
+               {slide ===true?
+                <><Skills /></> :(<><Interest /></>)}
+            </div>  
           </div>
         </div>
       )}
