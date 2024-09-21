@@ -4,19 +4,28 @@ import {Ban, CircleArrowLeft, CircleArrowRight } from 'lucide-react';
 import { Interest } from '../components/Interest';
 import Skills from '../components/Skills';
 import Project from '../components/Project';
+import Extra from '../components/Extra';
 
 const Home = () => {
   // const [show, setShow] = useState(true);
-  const [slide,setSlide] = useState(false)
+  const [slide,setSlide] = useState(0)
 
-  const array=[<Interest/>,<Skills/>];
+  const array=[<Interest/>,<Skills/>,<Extra />];
 
   function handleClick() {
     setShow(!show);
   }
 
-  function handleSlide(){
-    setSlide(!slide);
+  function handleSlideRight(){
+    if(slide+1<array.length){
+      setSlide(slide+1);
+    }
+  }
+
+  function handleSlideLeft(){
+    if(slide>0){
+      setSlide(slide-1);
+    }
   }
   const [com,setCom]=useState(null);
   return (
@@ -34,15 +43,16 @@ const Home = () => {
         </div>
         <div>
           <div className="ml-44 w-[380px] h-[40px] bg-gray-700 rounded-3xl text-white p-2 mr-44 mt-0 flex flex-row gap-36">
-            <CircleArrowLeft onClick={handleSlide} className="text-9xl"/>
+            <CircleArrowLeft onClick={handleSlideLeft} className="text-9xl"/>
             <h1>
               SLIDE
             </h1>
-            <CircleArrowRight onClick={handleSlide} className="text-9xl"/>
+            <CircleArrowRight onClick={handleSlideRight} className="text-9xl"/>
           </div>
           <div className="ml-44 w-auto h-[350px] rounded-3xl bg-gray-700 text-white p-10 mr-44 mt-1 flex flex-row text-xl">
-              {slide ===true?
-              <>{array[0]}</> :(<>{array[1]}</>)}
+             <>
+                {slide<array.length ? array[slide] : array[array.length-1]}
+             </>
           </div>  
         </div>
       </div>
