@@ -11,6 +11,7 @@ const Skills = () => {
               <li>Database Management</li>
               <li>Problem Solving</li>
               <li>Javascript</li>
+              <li>Node.js</li>
             </ul>
     </div>
   )
